@@ -1,4 +1,4 @@
-package dao;
+package dao.baseprofile;
 
 import model.BaseEntity;
 

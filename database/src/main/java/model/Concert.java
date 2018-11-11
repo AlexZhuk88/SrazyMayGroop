@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,31 +13,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
-@Table(name = "news", schema = "smay_db")
-public class TheNew extends BaseEntity<Long> {
+@Builder
+@Table(name = "concert", schema = "smay_db")
+public class Concert extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String newsname;
+    private String concertName;
 
-    @Embedded
-    private Timing timing;
+    @ManyToOne
+    @JoinColumn(name = "groop_id")
+    private Groop groop;
+
+    @OneToOne(mappedBy = "concert")
+    private ConcertPlace concertPlace;
 
     private String discription;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private User user;
+    @Embedded
+    private Timing timing;
 
 }

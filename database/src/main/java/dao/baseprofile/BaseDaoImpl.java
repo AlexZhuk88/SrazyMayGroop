@@ -1,4 +1,4 @@
-package dao;
+package dao.baseprofile;
 
 import lombok.Cleanup;
 import model.BaseEntity;
@@ -21,7 +21,7 @@ public abstract class BaseDaoImpl<P extends Serializable, E extends BaseEntity<P
 //    }
 
     @SuppressWarnings("unchecked")
-    BaseDaoImpl() {
+    public BaseDaoImpl() {
         ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
         this.clazz = (Class<E>) type.getActualTypeArguments()[1];
     }

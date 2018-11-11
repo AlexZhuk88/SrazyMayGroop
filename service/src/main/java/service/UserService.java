@@ -1,6 +1,6 @@
 package service;
 
-import dao.UserDaoImpl;
+import dao.userprofile.UserDaoImpl;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.User;

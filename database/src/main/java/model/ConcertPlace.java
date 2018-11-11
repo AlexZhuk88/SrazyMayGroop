@@ -7,38 +7,37 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@ToString(exclude = "concert")
 @Entity
-@Table(name = "news", schema = "smay_db")
-public class TheNew extends BaseEntity<Long> {
+@Builder
+@Table(name = "concertplace", schema = "smay_db")
+public class ConcertPlace extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String newsname;
+    @OneToOne
+    @JoinColumn(name = "concert_id")
+    private Concert concert;
 
-    @Embedded
-    private Timing timing;
+    private String city;
 
-    private String discription;
+    private String place;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private User user;
+    private String entrance;
+
 
 }

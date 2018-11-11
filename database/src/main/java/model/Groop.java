@@ -5,40 +5,35 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
-@Table(name = "news", schema = "smay_db")
-public class TheNew extends BaseEntity<Long> {
+@Builder
+@Table(name = "groop", schema = "smay_db")
+public class Groop extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String newsname;
-
-    @Embedded
-    private Timing timing;
+    private String groopname;
 
     private String discription;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private User user;
+    @OneToMany(mappedBy = "groop")
+    private Set<Concert> setConcert = new HashSet<>();
 
 }

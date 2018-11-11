@@ -1,5 +1,6 @@
-package dao;
+package dao.userprofile;
 
+import dao.baseprofile.BaseDaoImpl;
 import lombok.Cleanup;
 import model.User;
 import org.hibernate.Session;
